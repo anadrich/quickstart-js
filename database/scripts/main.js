@@ -19,6 +19,8 @@
 var messageForm = document.getElementById('message-form');
 var messageInput = document.getElementById('new-post-message');
 var titleInput = document.getElementById('new-post-title');
+var usernameInput = document.getElementById('username-field');
+var passwordInput = document.getElementById('password-field');
 var signInButton = document.getElementById('sign-in-button');
 var signOutButton = document.getElementById('sign-out-button');
 var splashPage = document.getElementById('page-splash');
@@ -38,6 +40,7 @@ var listeningFirebaseRefs = [];
 // [START write_fan_out]
 function writeNewPost(uid, username, picture, title, body) {
   // A post entry.
+  alert(username);
   var postData = {
     author: username,
     uid: uid,
@@ -46,7 +49,6 @@ function writeNewPost(uid, username, picture, title, body) {
     starCount: 0,
     authorPic: picture
   };
-
   // Get a key for a new Post.
   var newPostKey = firebase.database().ref().child('posts').push().key;
 
@@ -363,9 +365,10 @@ function onAuthStateChanged(user) {
  */
 function newPostForCurrentUser(title, text) {
   // [START single_value_read]
-  var userId = firebase.auth().currentUser.uid;
+  var userId = firebase.auth().currentUser.uid; //working
   return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-    var username = snapshot.val().username;
+    var username = firebase.auth().currentUser.displayName;
+    alert(username);
     // [START_EXCLUDE]
     return writeNewPost(firebase.auth().currentUser.uid, username,
         firebase.auth().currentUser.photoURL,
@@ -399,8 +402,12 @@ function showSection(sectionElement, buttonElement) {
 window.addEventListener('load', function() {
   // Bind Sign in button.
   signInButton.addEventListener('click', function() {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider);
+    //var provider = new firebase.auth.GoogleAuthProvider();
+    //firebase.auth().signInWithPopup(provider);
+    //alert(usernameInput.value);
+    //alert(passwordInput.value);
+    firebase.auth().signInWithEmailAndPassword(usernameInput.value,passwordInput.value);
+    firebase.auth().currentUser.displayName = usernameInput.value;
   });
 
   // Bind Sign out button.
@@ -413,7 +420,7 @@ window.addEventListener('load', function() {
 
   // Saves message on form submit.
   messageForm.onsubmit = function(e) {
-    e.preventDefault();
+    e.preventDefault(); //this part gets called
     var text = messageInput.value;
     var title = titleInput.value;
     if (text && title) {

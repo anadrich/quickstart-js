@@ -17,7 +17,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="Demonstrates the use of Google Cloud Database with a Firebase DB">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Firebase Database Quickstart</title>
+  <title>News Aggregator</title>
 
   <!-- Disable tap highlight on IE -->
   <meta name="msapplication-tap-highlight" content="no">
@@ -56,6 +56,18 @@
        Copy the snippet that appears in place of this comment.
        *************************************************************************** -->
 
+<script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBAJXeJG4KWNb_4zUFQeXjSZBLE-lbys2o",
+    authDomain: "anadrich-f020a.firebaseapp.com",
+    databaseURL: "https://anadrich-f020a.firebaseio.com",
+    storageBucket: "anadrich-f020a.appspot.com",
+    messagingSenderId: "766491779917"
+  };
+  firebase.initializeApp(config);
+</script>
 </head>
 <body>
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -64,8 +76,18 @@
   <!-- Splash screen -->
   <section id="page-splash">
     <h2>News Aggregator</h2>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="username-field">
+                  <label class="mdl-textfield__label" for="username-field">Email</label>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="password" id="password-field">
+                  <label class="mdl-textfield__label" for="password-field">Password</label>
+    </div>
+    <div>
     <div>
       <button id="sign-in-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"><i class="material-icons">account_circle</i> Sign in</button>
+      <button id="sign-up-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"><i class="material-icons">account_circle</i> Sign up</button>
     </div>
   </section>
 
@@ -73,7 +95,7 @@
   <header class="header mdl-layout__header mdl-color-text--white mdl-color--light-blue-700">
 
     <div class="mdl-layout__header-row titlebar">
-      <h3 class="logo">Database Web Quickstart</h3>
+      <h3>News Aggregator</h3>
       <button id="sign-out-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"><i class="material-icons">account_circle</i> Sign out</button>
     </div>
 
@@ -147,6 +169,18 @@
   </main>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBAJXeJG4KWNb_4zUFQeXjSZBLE-lbys2o",
+    authDomain: "anadrich-f020a.firebaseapp.com",
+    databaseURL: "https://anadrich-f020a.firebaseio.com",
+    storageBucket: "anadrich-f020a.appspot.com",
+    messagingSenderId: "766491779917"
+  };
+  firebase.initializeApp(config);
+</script>
 <script src="scripts/main.js"></script>
 </body>
 </html>
